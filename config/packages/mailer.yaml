@@ -1,0 +1,33 @@
+swiftmailer:
+
+    default_mailer:       ~
+    mailers:
+        # Prototype
+        name:
+            url:                  null
+            transport:            smtp
+            command:              '/usr/sbin/sendmail -bs'
+            username:             amira.dgham@continuousnet.com
+            password:             'aSspjguK'
+            host:                 mail.dreamhost.com
+            port:                 587
+            timeout:              100
+            stream_options: 
+                 ssl:
+                    allow_self_signed: true
+                    verify_peer: false
+                    verify_peer_name: false   
+            encryption:           tls
+            sender_address:       amira.dgham@continuousnet.com
+            delivery_addresses:   []
+            antiflood:
+                threshold:            99
+                sleep:                0
+            spool:
+                type:                 file
+                path:                 '%kernel.cache_dir%/swiftmailer/spool'
+
+                # Used by "service" type
+                id:                   null
+            delivery_whitelist:   []
+            disable_delivery:     true
