@@ -7,8 +7,6 @@ use Exception;
 use App\Entity\User;
 use App\Entity\Doctor;
 use App\Entity\Country;
-use App\Entity\Patient;
-use App\Entity\Hospital;
 use App\Entity\UserType;
 use App\Entity\Speciality;
 use FOS\RestBundle\View\View;
@@ -50,23 +48,11 @@ class RestApiProfileController extends FOSRestController
         $data = array(
             'id' => $user->getId(),
         );
-        if ($user->getUserType() === UserType::TYPE_HOSPITAL) {
-            $hospitalrepository = $this->getDoctrine()->getRepository(Hospital::class);
-            $hosital = $hospitalrepository->findBy(array('created_by' => $data));
+            $hospitalrepository = $this->getDoctrine()->getRepository(User::class);
+            $hosital = $hospitalrepository->findBy(array('id' => $data));
             return View::create($hosital, JsonResponse::HTTP_OK);
-        }
-        if ($user->getUserType() === UserType::TYPE_DOCTOR) {
-            $doctorrepository = $this->getDoctrine()->getRepository(Doctor::class);
-            $doctor = $doctorrepository->findBy(array('created_by' => $data));
-
-            return View::create($doctor, JsonResponse::HTTP_OK, []);
-        }
-        if ($user->getUserType() === UserType::TYPE_PATIENT) {
-            $patientrepository = $this->getDoctrine()->getRepository(Patient::class);
-            $patient = $patientrepository->findBy(array('created_by' => $data));
-
-            return View::create($patient, JsonResponse::HTTP_OK);
-        }
+        
+     
         if ($user->getUserType() === UserType::TYPE_ADMIN) {
             $repository = $this->getDoctrine()->getRepository(User::class);
             $admin = $repository->findBy(array('id' => $data));

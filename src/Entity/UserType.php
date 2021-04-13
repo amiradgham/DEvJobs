@@ -6,9 +6,9 @@ use App\Entity\BasicEnum;
 
 class UserType extends BasicEnum
 {   
-    const TYPE_HOSPITAL= 'trainingManager';
-    const TYPE_PATIENT= 'companyManager';
-    const TYPE_DOCTOR= 'userIT';
+    const TYPE_TRAINIG= 'trainingManager';
+    const TYPE_COMPANY= 'companyManager';
+    const TYPE_IT= 'userIT';
     const TYPE_ADMIN= 'admin';
     
 

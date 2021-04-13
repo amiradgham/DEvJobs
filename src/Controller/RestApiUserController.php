@@ -305,19 +305,16 @@ class RestApiUserController extends AbstractFOSRestController
          $usertype = $request->request->get("user_type");
          if (isset($usertype)) {
 
-            if ($usertype == 'patient' || $usertype == 'doctor' || $usertype == 'hospital' || $usertype == 'admin') {
+            if ($usertype == 'trainingManager' || $usertype == 'companyManager' || $usertype == 'userIT' || $usertype == 'admin') {
 
                $this->user->setUserType($usertype);
             } else {
-               return View::create("user type must be one of patient/doctor/hospital/admin", JsonResponse::HTTP_BAD_REQUEST, []);
+               return View::create("user type must be one of trainingManager/companyManager/userIT/admin", JsonResponse::HTTP_BAD_REQUEST, []);
             }
          } else {
             return View::create("mising user_type", JsonResponse::HTTP_BAD_REQUEST, []);
          }
          $usertype = $request->request->get("user_type");
-
-         if ($usertype == "doctor" || $usertype == "patient") {
-
             $checkGenderResult = $this->checkGender($request);
             if (!is_null($checkGenderResult)) {
                return $checkGenderResult;
@@ -351,7 +348,6 @@ class RestApiUserController extends AbstractFOSRestController
             if (!is_null($checkEmailResult)) {
                return $checkEmailResult;
             }
-
             $password = $request->request->get("password");
             if (isset($password)) {
                $hash = $encoder->encodePassword($this->user, $password);
@@ -365,7 +361,6 @@ class RestApiUserController extends AbstractFOSRestController
             $this->user->setEnabled(true);
             $this->user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
             $this->user->setCreatedAt(new \DateTime());
-         } else {
             $checkGenderResult = $this->checkGender($request);
             if (!is_null($checkGenderResult)) {
                return $checkGenderResult;
@@ -410,92 +405,9 @@ class RestApiUserController extends AbstractFOSRestController
             $this->user->setEnabled(true);
             $this->user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
             $this->user->setCreatedAt(new \DateTime());
-         }
-         $usertype = $request->request->get("user_type");
-         if ($usertype == "patient") {
-            $this->patient = new Patient();
-            $checkWeightResult = $this->checkWeight($request);
-            if (!is_null($checkWeightResult)) {
-               return $checkWeightResult;
-            }
-            $checkSizeResult = $this->checkSize($request);
-            if (!is_null($checkSizeResult)) {
-               return $checkSizeResult;
-            }
-            $checkPathologyResult = $this->checkPathology($request);
-            if (!is_null($checkPathologyResult)) {
-               return $checkPathologyResult;
-            }
             $this->user->setRemove(false);
             $entity->persist($this->user);
             $entity->flush();
-            $this->patient->setCreatedBy($this->user);
-            $this->patient->setCreatedAt(new \DateTime());
-            $entity->persist($this->patient);
-            $entity->flush();
-         }
-         $usertype = $request->request->get("user_type");
-         if ($usertype == "doctor") {
-            $this->doctor = new Doctor();
-            $checkRegistratioNumberResult = $this->checkRegistrationNumber($request);
-            if (!is_null($checkRegistratioNumberResult)) {
-               return $checkRegistratioNumberResult;
-            }
-            $checkSpecialityResult = $this->checkSpeciality($request);
-            if (!is_null($checkSpecialityResult)) {
-               return $checkSpecialityResult;
-            }
-            $this->user->setRemove(false);
-            $entity->persist($this->user);
-            $entity->flush();
-            $this->doctor->setAffiliate(false);
-            $this->doctor->setCreatedBy($this->user);
-            $this->doctor->setCreatedAt(new \DateTime());
-            $this->doctor->setRemoved(false);
-            $entity->persist($this->doctor);
-            $entity->flush();
-          
-            $repository = $this->getDoctrine()->getRepository(User::class);
-            $patientid = $repository->findOneBy(array("id" => 132));
-            $doctorAssignment = new DoctorAssignement();
-            $doctorAssignment->setIdPatient($patientid);
-            $doctorAssignment->setIdDoctor($this->user);
-            $doctorAssignment->setRequestDate(new \DateTime());
-            $doctorAssignment->setStatus("Accepted");
-            $doctorAssignment->setCreatedBy($this->user);
-            $doctorAssignment->setEnabled(true);
-            $doctorAssignment->setRemoved(false);
-            $doctorAssignment->setCreatedAt(new \DateTime());
-            $doctorAssignment->setInvitationToken(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
-            $entity->persist($doctorAssignment);
-            $entity->flush();
-         }
-         if ($usertype == "hospital") {
-            $this->hospital = new Hospital();
-            $checkWebSite = $this->checkWebSite($request);
-            if (!is_null($checkWebSite)) {
-               return $checkWebSite;
-            }
-            $checkLocation = $this->checkLocation($request);
-            if (!is_null($checkLocation)) {
-               return $checkLocation;
-            }
-            
-            $this->user->setRemove(false);
-            $entity->persist($this->user);
-            $entity->flush();
-          
-            $this->hospital->setCreatedBy($this->user);
-            $this->hospital->setRemoved(false);
-            $this->hospital->setCreatedAt(new \DateTime());
-            $entity->persist($this->hospital);
-            $entity->flush();
-         }
-         if ($usertype == "admin") {
-            $this->user->setRemove(false);
-            $entity->persist($this->user);
-            $entity->flush();
-         }
          $response = array(
             "message" => "account created with success",
             "result" => $this->user,

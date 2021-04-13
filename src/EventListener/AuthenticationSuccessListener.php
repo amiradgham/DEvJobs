@@ -6,7 +6,6 @@ use Stripe\Stripe;
 use App\Entity\User;
 use App\Entity\Doctor;
 use App\Entity\Patient;
-use App\Entity\Hospital;
 use App\Entity\UserType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -61,32 +60,6 @@ class AuthenticationSuccessListener extends Controller
         $data['zipCode'] = $user->getZipCode();
         $data['city'] = $user->getCity();
         $data['country'] = $user->getCountry();
-     
-
-        
-        if ($user->getUserType() === UserType::TYPE_PATIENT) {
-            $repository = $this->em->getRepository(Patient::class);
-            $patient = $repository->findOneBy(array('created_by' => $user->getId()));
-            if (!is_null($patient)) {
-                $data['weight'] = $patient->getWeight();
-                $data['size'] = $patient->getSize();
-                $data['proffesion'] = $patient->getProffesion();
-                $data['qr_code'] = $user->getQRCode();
-            }
-        } else if ($user->getUserType() === UserType::TYPE_DOCTOR) {
-            $repository = $this->em->getRepository(Doctor::class);
-            $doctor = $repository->findOneBy(array('created_by' => $user->getId()));
-            if (!is_null($doctor)) {
-                $data['speciality'] = $doctor->getSpeciality();
-                $data['qr_code'] = $user->getQRCode();
-            }
-        } else if ($user->getUserType() === UserType::TYPE_HOSPITAL) {
-            $repository = $this->em->getRepository(Hospital::class);
-            $hospital = $repository->findOneBy(array('created_by' => $user->getId()));
-            if (!is_null($hospital)) {
-                $data['type'] = $hospital->getType();
-            }
-        }
         $event->setData($data);
     }
 }
