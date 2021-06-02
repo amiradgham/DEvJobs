@@ -7,7 +7,6 @@ use App\Entity\User;
 use App\Entity\Doctor;
 use App\Entity\Country;
 use App\Entity\Patient;
-use App\Entity\Hospital;
 use App\Entity\UserType;
 use App\Entity\Speciality;
 use FOS\RestBundle\View\View;

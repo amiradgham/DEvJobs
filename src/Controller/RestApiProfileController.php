@@ -126,113 +126,11 @@ class RestApiProfileController extends FOSRestController
         $user->setUpdatedAt(new \DateTime());
         $em = $this->getDoctrine()->getManager();
         $em->flush();
-
-        if ($user->getUserType() === UserType::TYPE_HOSPITAL) {
-            $repository = $this->getDoctrine()->getRepository(Hospital::class);
-            $hospital = $repository->findOneBy(array('created_by' => $user->getId()));
-
-            if (!is_null($hospital)) {
-                $type = $request->request->get('type');
-                if (isset($type)) {
-                    $hospital->setType($type);
-                }
-                $website = $request->request->get("web_site");
-                $typewebsite= gettype($website);
-                if (isset($website)) {
-                   if ($typewebsite== "string") {
-                      $hospital->setWebSite($website);
-                   } else {
-                      return View::create("web_site should be string!", JsonResponse::HTTP_BAD_REQUEST, []);
-                   }
-                }
-
-                $location = $request->request->get("location");
-                $typelocation= gettype($location);
-                if (isset($location)) {
-                   if ($typelocation== "string") {
-                      $hospital->setLocation($location);
-                   } else {
-                      return View::create("location should be string!", JsonResponse::HTTP_BAD_REQUEST, []);
-                   }
-                }
-                    $hospital->setUpdatedBy($user);
-                    $hospital->setUpdatedAt(new \DateTime());
-                    $em = $this->getDoctrine()->getManager();
-                    $em->flush();
-                    return View::create($hospital, JsonResponse::HTTP_OK, []);
-                }
-            }
+        return View::create($user, JsonResponse::HTTP_OK, []);
+      
+    }      
         
-        if ($user->getUserType() === UserType::TYPE_PATIENT) {
-            $repository = $this->getDoctrine()->getRepository(Patient::class);
-            $patient = $repository->findOneBy(array('created_by' => $user->getId()));
-            if (!is_null($patient)) {
-                $weight = $request->request->get('weight');
-                if (isset($weight)) {
-                    $patient->setWeight((double)$weight);
-                }
-                $size = $request->request->get('size');
-                if (isset($size)) {
-                    $patient->setSize((double)$size);
-                }
-                $proffesion = $request->request->get('proffesion');
-                if (isset($proffesion)) {
-                    $patient->setProffesion($proffesion);
-                }
-                $pathology = $request->request->get('pathology');
-                if (isset($pathology)) {
-                    $patient->setWeight($pathology);
-                }
-                $patient->setUpdatedBy($user);
-                $patient->setUpdatedAt(new \DateTime());
-                $em = $this->getDoctrine()->getManager();
-                $em->flush();
-                return View::create($patient, JsonResponse::HTTP_OK, []);
-            }
-        }
-        if ($user->getUserType() === UserType::TYPE_DOCTOR) {
-            $repository = $this->getDoctrine()->getRepository(Doctor::class);
-            $doctor = $repository->findOneBy(array('created_by' => $user->getId()));
-            if (!is_null($doctor)) {
-                $speciality = $request->request->get('speciality');
-                if (isset($speciality)) {
-                    $repository = $this->getDoctrine()->getRepository(Speciality::class);
-                    $specialityy = $repository->findOneBy(array('id' => $speciality, 'removed' => false));
-                    if (!is_null($specialityy)) {
-                        $doctor->setSpeciality($specialityy);
-                    } else {
-                        return View::create('speciality not found and must be type of Speciality' , JsonResponse::HTTP_BAD_REQUEST, []);
-                    }
-                }
-                $number = $request->request->get('registration_number');
-                if (isset($number)) {
-                    if( gettype($number) == "string"){
-                        $doctor->setRegistrationNumber($number);
-                    }
-                    else{
-                        return View::create('registration_number must be unique and type string' , JsonResponse::HTTP_BAD_REQUEST, []);
-                    }
-                }
-                $hospital = $request->request->get('hospital_id');
-                $hosp = 'hospital';
-                if (isset($hospital)) {
-                    $repository = $this->getDoctrine()->getRepository(Hospital::class);
-                    $hospialid = $repository->findOneBy(array('id' => $hospital, 'removed' => false));
-                    if (!is_null($hospialid)) {
-                        $doctor->setHospital($hospialid);
-                    } else {
-                        return View::create('hospital not found', JsonResponse::HTTP_BAD_REQUEST, []);
-                    }
-                }
-                
-                $doctor->setUpdatedBy($user);
-                $doctor->setUpdatedAt(new \DateTime());
-                $em = $this->getDoctrine()->getManager();
-                $em->flush();
-                return View::create($doctor, JsonResponse::HTTP_OK, []);
-            }
-        }
-    }
+    
     /**
      * @param Request $request
      * @Rest\Patch("/api/updatePassword", name ="update_password")
@@ -271,7 +169,6 @@ class RestApiProfileController extends FOSRestController
        try{
         $user = $this->getUser();
         $uploadedImage = $request->files->get('picture');
-        dump($uploadedImage);
         if ($uploadedImage == null){
             return View::create("select picture please !", JsonResponse::HTTP_BAD_REQUEST, []);
         }
