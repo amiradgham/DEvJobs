@@ -153,6 +153,7 @@ class WebPagesController extends AbstractController
         $invitationValidation = $repository->findOneBy(array('invitation_token' => $token, 'created_by' => $id, 'status' => "Pending", 'removed' => false));
         $repository = $this->getDoctrine()->getRepository(User::class);
         $user = $repository->findOneBy(array('id' => $id));
+        
         $name = $user->getUsername();
         if (isset($response)) {
             if (!is_null($invitationValidation)) {

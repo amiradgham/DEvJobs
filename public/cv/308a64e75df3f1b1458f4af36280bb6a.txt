@@ -1,0 +1,138 @@
+"sep=;"
+slug;name;description;parent;keywords;icon;map_icon;header_type;header_image;header_image_align;category_featured
+chirurgien;chirurgien;;0;;;;;;;
+endocrinologue-diabetologue;"endocrinologue diabétologue";;0;;;;;;;
+gastro-hepathologie;gastro-hepathologie;;0;;;;;;;
+generaliste-osteopathe;"généraliste - ostéopathe";;0;;;;;;;
+gynecologie-obstetrique;gynecologie-obstetrique;;0;;;;;;;
+hematologie;hematologie;;0;;;;;;;
+hopitaux;Hôpitaux;;0;;;;map;;image-left;0
+hypnotherapeute;hypnothérapeute;;0;;;;;;;
+kinesitherapeute;kinésithérapeute;;0;;;;;;;
+laboratoire;laboratoire;;0;;https://ghealth.continuousnet.com/wp-content/uploads/images.png;;map;https://ghealth.continuousnet.com/wp-content/uploads/images.png;image-left;0
+laboratory;laboratory;;0;;;;;;;
+medecin-dentiste;"médecin dentiste";"La médecine dentaire est science de la médecine qui concerne les dents mais aussi les organes buccaux et les tissus qui les soutiennent et les parodontes. Il existe de nombreuses spécialisations dans la médecine dentaire même si les spécialités officielles diffèrent d` un pays à un autre. Les spécialisations les plus répandues actuellement sont : la chirurgie dentaire
+
+";0;;;;map;;image-left;0
+medecin-du-travail;"médecin du travail";;0;;;;;;;
+medecin-physique-readaptateur;"médecin physique réadaptateur";;0;;;;;;;
+medecine-interne;"medecine interne";;0;;;;;;;
+medecine-legale;"medecine legale";;0;;;;;;;
+medecine-nucleaire;"medecine nucleaire";;0;;;;;;;
+medecine-physique;"medecine physique";;0;;;;;;;
+medical-specialties;"Medical Specialties";;0;;https://ghealth.continuousnet.com/wp-content/uploads/medium.png;;map;;image-left;0
+acupuncteur;Acupuncteur;"L’acupuncture est une spécialisation en médecine dont les origines remontent aux pratiques fondatrices de la médecine traditionnelle en Chine. Son concept est inspiré de la stimulation de points précis et connus à différents endroits du corps humain  en recourant à différentes techniques physiques. Les applications thérapeutiques de l’acupuncture sont nombreuses.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+acupuncture;acupuncture;;medical-specialties;;;;map;;image-left;0
+allergologue;Allergologue;"L` allergologie est une spécialité  ou compétence  médicale qui s’intéresse au traitement des allergies.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+anatomo-cyto-pathologiste;Anatomo-cyto-pathologiste;"L'anatomie et cytologie pathologiques désigne la spécialité médicale qui étudie les tissus, les cellules, et leurs anomalies, afin de contribuer au diagnostic des maladies, et notamment des cancers. Elle permet d'évaluer le type précis d'affection afin d'orienter la décision thérapeutique.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+andrologue;Andrologue;"L'andrologue se focalise sur la physiologie et les pathologies liées à l'appareil génital masculin. Il est en quelque sorte l'équivalent du gynécologue chez la femme.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+anesthesie-reanimation;anesthesie-reanimation;;medical-specialties;;;;map;;image-left;0
+anesthesiste-reanimateur;Anesthésiste-réanimateur;"Le médecin anesthésiste-réanimateur endort le patient avant une opération chirurgicale. Ensuite, il surveille l’état de son patient pendant toute la durée de son opération, puis à son réveil. Il intervient enfin pour atténuer les douleurs postopératoires.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+angiologue;Angiologue;"est une spécialité médicale concernant les pathologies et les soins aux vaisseaux sanguins quelle qu'en soit leur nature (veines, artères, microcirculation) ou lymphatiques.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+audioprothesiste;audioprothésiste;;medical-specialties;;;;map;;image-left;0
+biologiste-medicale;"biologiste medicale";;medical-specialties;;;;map;;image-left;0
+cancerologue;Cancérologue;"cancérologue est la spécialité médicale d'étude, de diagnostic et de traitement des cancers. Un médecin qui pratique cette discipline est appelé oncologue ou cancérologue.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+cancerologue-carcinologue;Cancérologue-carcinologue;"La carcinologie  également appelée cancérologie ou encore oncologie   est la spécialité médicale qui vise le diagnostic et le traitement des patients atteints de cancer. Le cancérologue 
+est le médecin qui pratique cette spécialité. Il est également désigné par oncologue  une appellation d` origine grecque.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+carcinologie-medicale;"carcinologie medicale";;medical-specialties;;;;map;;image-left;0
+cardiologie;cardiologie;;medical-specialties;;;;map;;image-left;0
+cardiologue;Cardiologue;"La cardiologie  comme l` indique son nom  est la spécialité médicale qui s` intéresse des problèmes du cœur et des vaisseaux. Elle couvre ainsi certains organes du système cardiovasculaire. Le cardilogue traite l` adulte et l` enfant. Il prend en charge le diagnostic et le traitement des pathologies cardiaques  des troubles du rythme cardiaque  des maladies coronariennes  des pathologies veineuses et vasculaires  de l` insuffisance cardiaque  des cardiopathies valvulaires.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+chi-cardiovasculaire-t;"chi. cardiovasculaire t";;medical-specialties;;;;map;;image-left;0
+chirurgie;Chirurgie;;medical-specialties;Chirurgie;https://ghealth.continuousnet.com/wp-content/uploads/heartbeat.png;https://ghealth.continuousnet.com/wp-content/uploads/heartbeat.png;map;;image-left;0
+chirurgie-carcinologie;"chirurgie carcinologie";;chirurgie;;;;map;;image-left;0
+chirurgie-generale;"chirurgie generale";;chirurgie;;;;map;;image-left;0
+chirurgie-infantile;"chirurgie infantile";;chirurgie;;;;map;;image-left;0
+chirurgie-maxillo-faciale;"chirurgie maxillo-faciale";;chirurgie;;;;map;;image-left;0
+chirurgie-orthopedique;"chirurgie orthopedique";;chirurgie;;;;map;;image-left;0
+chirurgie-pediatrique;"chirurgie pediatrique";;chirurgie;;;;map;;image-left;0
+chirurgie-plastique;"chirurgie plastique";;chirurgie;;;;map;;image-left;0
+chirurgien-cancerologue;"chirurgien cancérologue";;chirurgie;;;;map;;image-left;0
+chirurgien-cardio-vasculaire;"chirurgien cardio-vasculaire";;chirurgie;;;;map;;image-left;0
+chirurgien-cardio-vasculaire-thoracique;"chirurgien cardio-vasculaire thoracique";;chirurgie;;;;map;;image-left;0
+chirurgien-de-lobesite;"chirurgien de lobésité";;chirurgie;;;;map;;image-left;0
+chirurgien-esthetique;"chirurgien esthétique";;chirurgie;;;;map;;image-left;0
+chirurgien-maxillo-facial-et-esthetique;"chirurgien maxillo facial et esthétique";;chirurgie;;;;map;;image-left;0
+chirurgien-maxillo-facial-stomatologue;"chirurgien maxillo facial stomatologue";;chirurgie;;;;map;;image-left;0
+chirurgien-orthopediste;"chirurgien orthopédiste";;chirurgie;;;;map;;image-left;0
+chirurgien-pediatrique;"chirurgien pédiatrique";;chirurgie;;;;map;;image-left;0
+chirurgien-plasticien;"chirurgien plasticien";;chirurgie;;;;map;;image-left;0
+chirurgien-urologue;"chirurgien urologue";;chirurgie;;;;map;;image-left;0
+chirurgien-vasculaire;"chirurgien vasculaire";;chirurgie;;;;map;;image-left;0
+chirurgien-visceral-et-digestif;"chirurgien viscéral et digestif";;chirurgie;;;;map;;image-left;0
+chirurgien-generaliste;"Chirurgien généraliste";"Personne qui, à titre de médecin spécialiste, pratique des interventions chirurgicales afin de diagnostiquer une maladie, d'enlever des tissus ou des organes atteints, de réparer des traumatismes ou d'assurer le fonctionnement correct et normal d'un organe.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medium.png;;;;image-left;0
+chirurgien-orthopediste-traumatologue;"Chirurgien orthopédiste traumatologue";"La chirurgie orthopédique et traumatologique porte sur le traitement chirurgical des déformations (orthopédie) et des accidents (traumatologie) de l'appareil locomoteur : squelette, muscles et ce qui les relie (tendons et ligaments).";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medium.png;;;;image-left;0
+chirurgiens-generale;"Chirurgiens générale";"La chirurgie générale est une spécialité médicale qui permet de pratiquer des interventions chirurgicales pouvant avoir différents objectifs dont notamment : enlèvement d` organes qui sont atteints ; diagnostic d` une maladie ; réparation de certains traumatismes ; rétablir un fonctionnement d` un organe particlier; etc.
+La chirurgie générale peut porter sur plusieurs organes dont notamment : la tête  le cou  l` estomac  les intestins  le foie  la vésicule et les voies biliaires  le pancréas et la rate  le thorax  l` œsophage  etc. Elle peut porter également sur les artères et les veines.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+dermatologie;dermatologie;;medical-specialties;;;;map;;image-left;0
+dermatologue;Dermatologue;"La dermatologie est une spécialité médicale qui vise à traiter et prévenir les maladies de la peau de manière générale et la maladies apparentées  telle que les maladies du tissu cellulaire sous-cutané  les maladies des muqueuses et des annexes de la peau de l` être humain. La dermatologie vise également le traitement des manifestations cutanées des maladies systémiques.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+diabetologue;diabétologue;;medical-specialties;;;;map;;image-left;0
+dieteticien;diététicien;;medical-specialties;;;;map;;image-left;0
+endocrinologie;endocrinologie;;medical-specialties;;;;map;;image-left;0
+endocrinologue;endocrinologue;;medical-specialties;;;;map;;image-left;0
+endocrinologue-diabete;"Endocrinologue (diabète ...)";"L’endocrinologie est la spécialité qui s’intéresse aux glandes endocrines : organes qui sont capables de secréter des hormones libérées dans la circulation sanguine. Les soucis de santé les plus couramment traités par cette spécialité sont : diabète  problèmes de métabolisme comme l’obésité et le surpoids  pathologies de la thyroïde  de l’hypophyse  de la surrénale  anomalies hormonales du système reproducteur féminin et masculin.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+endodontiste;endodontiste;;medical-specialties;;;;map;;image-left;0
+ergotherapeute;ergothérapeute;;medical-specialties;;;;map;;image-left;0
+gastro-enterologue;Gastro-entérologue;"La gastro-entérologie est une spécialité médicale qui pour vocation de diagnostiquer et traiter les maladies relatives à l` appareil digestif. L` estomac est l` organe le plus connu par le grand public pour cette spécialité médicale. Cependant  le médecin gastro-entérologue traite les autres organes de l` appareil digestif  dont notamment le foie  le pancréas  la vésicule biliaire  l` œsophage  l` intestin grêle et le côlon.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+gastro-enterologue-groupe-stge;"Gastro-entérologue (groupe stge)";"Téléconsultations gratuites destinées exclusivement aux patients ayant des maladies relatives à la Gastro-Entérologie. Elles sont offertes à titre d` action citoyenne par des médecins volontaire de l` Association Tunisiennes de Gastro-Entérologie  afin d` aider les citoyens durant la période de confinement.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medium.png;;;;image-left;0
+generaliste;Généraliste;"La médecine générale  également appelée médecine de famille  a pour objectif d` assurer le suivi durable d` un personne ou d` une famille. Lorsqu` il s` agit d` un petit village  souvent le médecin généraliste assure le suivi de toute la communauté du village. La médecine générale ne se limite ni aux maladies d` un organe donné  ni à une tranche d` âges particulière  ni à un sexe donné. Le médecin généraliste  est souvent consulté en premier pour diagnostiquer le patient et ses symptômes et peut décider de poursuivre le traitement du patient lui-même ou bien l` aiguiller et le confier à un médecin confrère ayant une spécialité précise.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+geriatre;gériatre;;medical-specialties;;;;map;;image-left;0
+geriatre-personnes-agees;"Gériatre (personnes âgées)";"La Gériatrie  ou médecine gériatrique  est la spécialité médicale destinée au traitement des personnes âgées. Considérée comme spécialité dans la plupart des pays et comme compétence dans quelques-uns  la Gériatrie a pour objectif de traiter tous les types de soucis à l` âge de vieillesse : problèmes physiques  mentaux  fonctionnels et autres. En particulier  le gériatre apporte un soutien important pour les soins aigus  chroniques  de réhabilitation  de prévention et en fin de vie.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+gynecologue;Gynécologue;"La gynécologie  ou gynécologie-obstétrique  est une spécialité médicale qui vise l` étude  le diagnostic  le traitement ainsi que les actes relatifs à l` appareil génital des femmes. Le gynécologue obstétricien est un chirurgien spécialisé dans la chirurgie en relation avec l` appareil génital féminin et peut soit traiter soit intervenir à ce titre pour une infection au niveau d` un organe de cet appareil  pour des troubles hormonaux  pour une pathologie maline (cancer)  pour une contraception  etc. Outre ces interventions  le gynécologue accompagne les femmes pendant la grossesse et lors de l` accouchement. Il traite aussi les problèmes d` infertilité féminine ainsi que troubles liés à la ménopause.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+gynecologue-obstetricien;"Gynécologue obstétricien";"Le médecin gynécologue-obstétricien est spécialisé dans l'étude du fonctionnement de la femme, de son appareil génital, de la grossesse et de l'accouchement et de ses suites";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+hematologue;Hématologue;"Un hématologue, ou hématologiste, est un médecin spécialiste de l'hématologie, c'est-à-dire de la prise en charge, de la prévention, du diagnostic et du traitement des maladies du sang";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medium.png;;;;image-left;0
+homeopathe;Homéopathe;"L’homéopathie est une compétence médicale qui se base sur le concept de similitude. Ainsi  avec l` homéopathie  on traite le patient à l` aide une substance très diluée qui  si elle était fournie concentrée à un quelqu` un en bonne santé elle lui aurait provoqué des symptômes semblables à ceux dont souffre le patient.
+Cette technique médicale a été inventée il y a un peu plus de 2 siècles. Son nom est d` origine grec.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/eyedropper.png;;;;image-left;0
+interniste;Interniste;"La médecine interne se situe en relais de la médecine générale et de la médecine spécialisée d'organe (3). On dit aussi que l'interniste est le spécialiste des diagnostics (4), qu'il est le mieux outillé pour identifier et proposer un traitement pour des maladies touchant simultanément plusieurs organes.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+maladies-infectieuses;"maladies infectieuses";;medical-specialties;;;;map;;image-left;0
+medecin-esthetique;"Médecin esthétique";"La médecine esthétique est une spécialisation en médecine qui inclut les actes médicaux ayant pour objectif l` amélioration de l` apparence physique des êtres humains  hommes et femmes  adultes et enfants  y compris le retardement ou bien la diminution des effets du vieillissement.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medium.png;;;;image-left;0
+medecin-interniste;"Médecin interniste";"La médecine interne est une spécialité médicale polyvalente qui s` intéresse au diagnostic des organes internes du corps humain avec un focus des situations complexes ou rares. Les principaux organes pris en charges par la médecine interne sont : le système digestif  le cœur  les poumons   etc.
+Certaines maladies rares ou systémiques chez l` adulte  tel que le lupus par exemple  sont parfois difficiles à détecter. La médecine interne a ainsi la particularité de couvrir plusieurs systèmes du corps humain ce qui aider à dépister notamment les maladies auto immunes.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+medecine-generale;"medecine generale";;medical-specialties;;;;map;;image-left;0
+nephrologue;Néphrologue;"La néphrologie est la spécialité médicale visant à prévenir, diagnostiquer et soigner les maladies des reins. Elle est différente de l'urologie, spécialité chirurgicale s'intéressant à l'appareil génital masculin et à l'ensemble du système urinaire";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+neurologue;Neurologue;"La neurologie en médecine est une spécialité qui s` intéresse au système nerveux. Le cerveau est l` organe le plus connu par le public dans ce système. La neurologie focalise les maladies physiques et ne doit pas être confondue avec la psychiatrie.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+nutritionniste;Nutritionniste;"La nutrition est une discipline médicale qui étudie l’ensemble de phénomènes de transformation des apports alimentaires  par l’organisme  en énergie pour assurer son bon fonctionnement.
+Un équilibre alimentaire est nécessaire pour une vie saine. Tout excès ou insuffisance dans notre alimentation peut entrainer une malnutrition et par la suite des maladies nutritionnelles.
+Ces dernières peuvent êtres néfastes pour la santé humaine et même peuvent engendrer des maladies chroniques tels que l’hypertension artérielle  l’anémie  l’obésité  la dyslipidémie  le diabète…
+L’équilibre des aliments en glucides  lipides  protéines  vitamines et en minéraux est indispensable  pour une bonne nutrition et une bonne santé.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+ophtalmologue;Ophtalmologue;"L’ophtalmologie en médecine est la spécialité qui s` intéresse aux yeux  à leur structure et aux maladies associées. Le métier de l` ophtalmologue couvre les soucis de la vue  ainsi que les maladies de l’œil. L` ophtalmologue peut effectuer des interventions chirurgicales au niveau de yeux  ce qui lui accorde un statut de spécialiste et de chirurgien.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+orl-oreille-nez-gorge;"Orl (oreille nez gorge)";"L` ORL est l` abréviation de Oto-Rhino-Laryngologie. C` est une spécialité médicale et chirurgicale qui focalise sur le nez  la gorge  les oreilles et le larynx. L` ORL permet de traiter les soucis de l’odorat  de l` ouïe  des sinusites  de la voix  de la respiration  du goût  de l` équilibre  etc. Cette spécialité dont le nom est une composition de trois termes d’origine grecque  inclut également les actes de chirurgie cervico-faciale.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+orthopediste;Orthopédiste;"La Chirurgie Orthopédique et Traumatologique est la spécialité en chirurgie médicale qui permet de traiter les problèmes et les déformations des os et des articulations  ainsi que d` intervenir au niveau des muscles et des tendons. Cette spécialité permet de réparer ces organes que ce soit en cas de malformation de naissance ou de croissance  mais surtout en cas de dommages conséquents à un accident.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+oto-rhino-laryngologiste-orloreille-nez-gorge;"Oto-rhino-laryngologiste (orl)(oreille nez gorge)";"L'otorhinolaryngologie (littéralement « étude de l'oreille, du nez et du larynx ») représente une branche de la médecine spécialisée dans le diagnostic et le traitement des troubles du nez, de la gorge, de l'oreille, et de la région tête et cou. Le praticien est appelé otorhinolaryngologiste";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+pediatre-enfants;"Pédiatre (enfants)";"La pédiatrie est une spécialité médicale qui a pour vocation le suivi médical des enfants depuis leur naissance pour tous les aspects liés à leur santé. Le pédiatre prend en charge la vaccination  le contrôle du développement psycho-moteur et physiologique normal de l` enfant  traite maladies  etc. Il conseille également les parents pour la nutrition des enfants et surtout les bébés.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+pedopsychiatre;Pédopsychiatre;"La pédopsychiatrie est une spécialité médicale. Elle correspond à la psychiatrie consacrée à l` enfance  y compris les bébés  les enfants et les adolescents. Le pédopsychiatre intervient pour tous les types et raisons des soucis psychiques que peut rentrer un enfant pour des considérations internes à la famille  liés à l` éducation au sein des établissements d` enseignement  ou encore liés à son interaction avec d` autres enfants ou des adultes dans sa vie quotidienne. La pédopsychiatrie s` intéresse également à l` impact des réseaux sociaux et des jeux en ligne et autres supports numériques sur les enfants.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+phytotherapeute;Phytothérapeute;"La phytothérapie désigne l’emploi de plantes  les extraits de plantes ou encore leurs principes actifs naturels pour soigner. 
+Poudres  infusions  broyats sont utilisés depuis des siècles pour la remédiation naturelle des blessures. 
+C’est le soin des maux du corps d’une manière naturelle avec des plantes médicinales et d’une façon complémentaire aux traitement de la médecine classique.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+pneumologue;Pneumologue;"La pneumologie est la spécialité médicale qui concerne les soucis de santés relatifs aux organes suivants : les poumons  les bronches  la plèvre  et la trachée. Elle couvre de fait les infections de ces organes ainsi que les pathologies cancéreuses associés  les allergies. Les insuffisances respiratoires chroniques aussi bien que les apnées du sommeil font également partie du périmètre de la pneumologie.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+rhumatologue;Rhumatologue;"La rhumatologie est une spécialité en médecine qui traite les pathologies relatives aux organes locomoteurs de l` être humain  notamment la colonne vertébrale  les articulations  les os  les muscles  les tendons  les ligaments  etc. Le rhumatologue peut être amené à traiter des affections d` origine périphérique au système nerveux  mais sans pour autant traiter les maladies neurologique qui font l` objet d` une spécialité à part. Le rhumatologue propose ainsi des solutions aux rhumatismes et à certaines patologies auto-immunes. Les symptômes des maladies traitées par la rhumatologie peuvent se manifester sur différents organes comme les poumons  la peau  les reins et même les yeux.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+sexologue;Sexologue;"Le sexologue est un médecin qui peut soigner certains troubles sexuels : baisse du désir, méconnaissance du corps, troubles de l'érection… . Il a aussi un rôle d'éducateur concernant les maladies sexuellement transmissibles ( MST).";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+urologue;Urologue;"L’urologue  est le domaine de la médecine qui s'applique aux reins, aux voies urinaires des femmes ou des hommes, au système reproducteur masculin (appareil urogénital masculin) et aux glandes surrénales.";medical-specialties;;https://ghealth.continuousnet.com/wp-content/uploads/medkit.png;;;;image-left;0
+neurochirurgie;neurochirurgie;;0;;;;;;;
+neurochirurgien;neurochirurgien;;0;;;;;;;
+neurologie;neurologie;;0;;;;;;;
+nutrition-dietetique;nutrition-dietetique;;0;;;;;;;
+ophtalmologie;ophtalmologie;;0;;;;;;;
+orl-et-stomatologie;"orl et stomatologie";;0;;;;;;;
+orthodontiste;orthodontiste;;0;;;;;;;
+orthophoniste;orthophoniste;;0;;;;;;;
+orthoptiste;orthoptiste;;0;;;;;;;
+oto-rhino-laryngologiste-orl;"oto-rhino-laryngologiste (orl)";;0;;;;;;;
+parasitologie;parasitologie;;0;;;;;;;
+parodontiste-implantologiste;"parodontiste implantologiste";;0;;;;;;;
+pediatre;pédiatre;;0;;;;;;;
+pediatrie;pediatrie;;0;;;;;;;
+pedodontiste;pédodontiste;;0;;;;;;;
+pharmacie;Pharmacie;;0;;https://ghealth.continuousnet.com/wp-content/uploads/eyedropper.png;;map;;image-left;0
+pharmacy;pharmacy;;0;;;;;;;
+physiologiste;physiologiste;;0;;;;;;;
+physiotherapeute;physiothérapeute;;0;;;;;;;
+pneumologie;pneumologie;;0;;;;;;;
+podologue;podologue;;0;;;;;;;
+psychiatre;psychiatre;;0;;;;;;;
+psychiatrie;psychiatrie;;0;;;;;;;
+psychologue;psychologue;;0;;;;;;;
+psychotherapeute;psychothérapeute;;0;;;;;;;
+radiologie;radiologie;;0;;;;;;;
+radiologue;radiologue;;0;;;;;;;
+rhumatologie;rhumatologie;;0;;;;;;;
+urologie;urologie;;0;;;;;;;

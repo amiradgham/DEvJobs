@@ -7,9 +7,12 @@ use Exception;
 use App\Entity\User;
 use App\Entity\Doctor;
 use App\Entity\Country;
+use App\Entity\Societe;
 use App\Entity\UserType;
 use App\Entity\Speciality;
+use App\Entity\Informaticien;
 use FOS\RestBundle\View\View;
+use App\Entity\CenterFormation;
 use Vich\UploaderBundle\Entity\File;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Serializer;
@@ -48,15 +51,33 @@ class RestApiProfileController extends FOSRestController
         $data = array(
             'id' => $user->getId(),
         );
-            $hospitalrepository = $this->getDoctrine()->getRepository(User::class);
-            $hosital = $hospitalrepository->findBy(array('id' => $data));
-            return View::create($hosital, JsonResponse::HTTP_OK);
         
-     
         if ($user->getUserType() === UserType::TYPE_ADMIN) {
             $repository = $this->getDoctrine()->getRepository(User::class);
             $admin = $repository->findBy(array('id' => $data));
+
             return View::create($admin, JsonResponse::HTTP_OK);
+        }
+        if ($user->getUserType() === UserType::TYPE_IT) {
+            $repository = $this->getDoctrine()->getRepository(Informaticien::class);
+            $informaticien = $repository->findBy(array('created_by' => $data));
+
+            return View::create($informaticien, JsonResponse::HTTP_OK);
+
+        }
+        if ($user->getUserType() === UserType::TYPE_TRAINIG) {
+            $repository = $this->getDoctrine()->getRepository(CenterFormation::class);
+            $centre = $repository->findBy(array('id' => $data));
+
+            return View::create($centre, JsonResponse::HTTP_OK);
+
+        }
+        if ($user->getUserType() === UserType::TYPE_COMPANY) {
+            $repository = $this->getDoctrine()->getRepository(Societe::class);
+            $societe = $repository->findBy(array('id' => $data));
+
+            return View::create($societe, JsonResponse::HTTP_OK);
+
         }
     }
     /**
@@ -127,41 +148,58 @@ class RestApiProfileController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        if ($user->getUserType() === UserType::TYPE_HOSPITAL) {
-            $repository = $this->getDoctrine()->getRepository(Hospital::class);
-            $hospital = $repository->findOneBy(array('created_by' => $user->getId()));
+        if ($user->getUserType() === UserType::TYPE_IT) {
+            $repository = $this->getDoctrine()->getRepository(Informaticien::class);
+            $informaticien = $repository->findOneBy(array('created_by' => $user->getId()));
 
-            if (!is_null($hospital)) {
-                $type = $request->request->get('type');
-                if (isset($type)) {
-                    $hospital->setType($type);
+            if (!is_null($informaticien)) {
+                $bio = $request->request->get('bio');
+                if (isset($bio)) {
+                    
+
+                    $informaticien->setBio($bio);
                 }
-                $website = $request->request->get("web_site");
-                $typewebsite= gettype($website);
-                if (isset($website)) {
-                   if ($typewebsite== "string") {
-                      $hospital->setWebSite($website);
+                $contrat = $request->request->get("contract_type");
+                $contratTYpe= gettype($contrat);
+                if (isset($contrat)) {
+                   if ($contratTYpe== "string") {
+                      $informaticien->setContratType($contrat);
                    } else {
-                      return View::create("web_site should be string!", JsonResponse::HTTP_BAD_REQUEST, []);
+                      return View::create("contrat should be string!", JsonResponse::HTTP_BAD_REQUEST, []);
+                   }
+                }
+                
+                $RecieveNotification = $request->request->get("recieve_notification");
+                $typeRecieveNotification= gettype($RecieveNotification);
+                if (isset($RecieveNotification)) {
+                   if ($typeRecieveNotification== "boolean") {
+                      $informaticien->setRecieveNotification($RecieveNotification);
+                   } else {
+                      return View::create("recieve notification should be boolean!", JsonResponse::HTTP_BAD_REQUEST, []);
                    }
                 }
 
-                $location = $request->request->get("location");
-                $typelocation= gettype($location);
-                if (isset($location)) {
-                   if ($typelocation== "string") {
-                      $hospital->setLocation($location);
+                $experience = $request->request->get("experience");
+                $typeExperience= gettype($experience);
+                if (isset($experience)) {
+                   if ($typeExperience== "string") {
+                      $informaticien->setExperience($experience);
                    } else {
-                      return View::create("location should be string!", JsonResponse::HTTP_BAD_REQUEST, []);
+                      return View::create("experience should be string!", JsonResponse::HTTP_BAD_REQUEST, []);
                    }
                 }
-                    $hospital->setUpdatedBy($user);
-                    $hospital->setUpdatedAt(new \DateTime());
-                    $em = $this->getDoctrine()->getManager();
-                    $em->flush();
-                    return View::create($hospital, JsonResponse::HTTP_OK, []);
-                }
+                $informaticien->setUpdatedBy($user);
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+                return View::create($informaticien, JsonResponse::HTTP_OK, []);
             }
+        }
+                
+          
+                
+            
+
+               
         
         if ($user->getUserType() === UserType::TYPE_PATIENT) {
             $repository = $this->getDoctrine()->getRepository(Patient::class);
@@ -263,41 +301,111 @@ class RestApiProfileController extends FOSRestController
     /**
      * @param Request $request
      * @return JsonResponse
-     * @Rest\Post("/api/profile/picture", name ="patch_picture")
+     * @Rest\Post("/api/profile/file", name ="patch_picture")
      * @Rest\View(serializerGroups={"users"})
      */
     public function uploadImage(Request $request)
     {
+        $uploadType = $request->request->get('type');
+        if ($uploadType == "image"){
+            try{
+                $user = $this->getUser();
+                $uploadedImage = $request->files->get('picture');
+            
+                if ($uploadedImage == null){
+                    return View::create("select picture please !", JsonResponse::HTTP_BAD_REQUEST, []);
+                }
+                /**
+                 * @var UploadedFile $image
+                 */
+                $image = $uploadedImage;
+                $imageName = md5(uniqid()) . '.' . $image->guessExtension();
+                $imagetype = $image->guessExtension();
+                $path = $this->getParameter('image_directory');
+                $serveur_ip = gethostbyname(gethostname());
+                $path_uplaod = 'profile/images/';
+        
+                if ($imagetype == "jpeg" || $imagetype == "png") {
+                    $image->move($path_uplaod, $imageName);
+        
+                    $image_url = $path_uplaod . $imageName;
+                    $user->setPicture($image_url);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($user);
+                    $em->flush();
+                    return View::create($user, JsonResponse::HTTP_OK, []);
+                } else {
+        
+                    return View::create("select picture please !", JsonResponse::HTTP_BAD_REQUEST, []);
+                }
+                }catch (\Exception $e) {
+                    return View::create($e->getMessage(), JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+                }
+        }
+        else{
+            try{
+                $user = $this->getUser();
+                $uploadedcv = $request->files->get('cv');
+                if ($uploadedcv == null){
+                    return View::create("select file please !", JsonResponse::HTTP_BAD_REQUEST, []);
+                }
+                /**
+                 * @var UploadedFile $cv
+                 */
+                $cv = $uploadedcv;
+                $cvName = md5(uniqid()) . '.' . $cv->guessExtension();
+                $cvtype = $cv->guessExtension();
+                $path_uplaod = 'cv/';
+                 $cv->move($path_uplaod, $cvName);
+                    $cv_url = $path_uplaod . $cvName;
+                    $repository = $this->getDoctrine()->getRepository(Informaticien::class);
+                    $informaticien = $repository->findOneBy(array('created_by' => $user->getId()));
+                    $informaticien->setCv($cv_url);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($informaticien);
+                    $em->flush();
+                    return View::create($informaticien, JsonResponse::HTTP_OK, []);
+              
+                }catch (\Exception $e) {
+                    return View::create($e->getMessage(), JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+                }  
+        }
+
+       
+    }
+
+  
+
+     /**
+     * @return JsonResponse
+     * @Rest\POST("/api/profile/cv", name ="post_cv")
+     * @Rest\View(serializerGroups={"users"})
+     */
+    public function uploadcv(Request $request)
+    {
        try{
         $user = $this->getUser();
-        $uploadedImage = $request->files->get('picture');
-        dump($uploadedImage);
-        if ($uploadedImage == null){
-            return View::create("select picture please !", JsonResponse::HTTP_BAD_REQUEST, []);
+        $uploadedcv = $request->files->get('cv');
+        if ($uploadedcv == null){
+            return View::create("select file please !", JsonResponse::HTTP_BAD_REQUEST, []);
         }
         /**
-         * @var UploadedFile $image
+         * @var UploadedFile $cv
          */
-        $image = $uploadedImage;
-        $imageName = md5(uniqid()) . '.' . $image->guessExtension();
-        $imagetype = $image->guessExtension();
-        $path = $this->getParameter('image_directory');
-        $serveur_ip = gethostbyname(gethostname());
-        $path_uplaod = 'profile/images/';
-
-        if ($imagetype == "jpeg" || $imagetype == "png") {
-            $image->move($path_uplaod, $imageName);
-
-            $image_url = $path_uplaod . $imageName;
-            $user->setPicture($image_url);
+        $cv = $uploadedcv;
+        $cvName = md5(uniqid()) . '.' . $cv->guessExtension();
+        $cvtype = $cv->guessExtension();
+        $path_uplaod = 'cv/';
+         $cv->move($path_uplaod, $cvName);
+            $cv_url = $path_uplaod . $cvName;
+            $repository = $this->getDoctrine()->getRepository(Informaticien::class);
+            $informaticien = $repository->findBy(array('created_by' => $user->getId()));
+            $informaticien->setCv($cv);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $em->persist($informaticien);
             $em->flush();
-            return View::create($user, JsonResponse::HTTP_OK, []);
-        } else {
-
-            return View::create("select picture please !", JsonResponse::HTTP_BAD_REQUEST, []);
-        }
+            return View::create($informaticien, JsonResponse::HTTP_OK, []);
+      
         }catch (\Exception $e) {
             return View::create($e->getMessage(), JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }

@@ -7,10 +7,13 @@ use App\Entity\User;
 use App\Entity\Doctor;
 use App\Entity\Country;
 use App\Entity\Patient;
+use App\Entity\Societe;
 use App\Entity\Hospital;
 use App\Entity\UserType;
 use App\Entity\Speciality;
+use App\Entity\Informaticien;
 use FOS\RestBundle\View\View;
+use App\Entity\CenterFormation;
 use App\Entity\DoctorAssignement;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -180,91 +183,6 @@ class RestApiUserController extends AbstractFOSRestController
 
 
 
-   private function checkWeight(Request $request)
-   {
-      $weight = $request->request->get("weight");
-      if (isset($weight)) {
-         $typeweight = gettype($weight);
-         if ($typeweight == "string") {
-
-            $this->patient->setWeight((double)$weight);
-         } else {
-            return View::create("weight must be double", JsonResponse::HTTP_BAD_REQUEST, []);
-         }
-      } else {
-         return View::create("Missing weight filed", JsonResponse::HTTP_BAD_REQUEST, []);
-      }
-   }
-
-
-   private function checkSize(Request $request)
-   {
-      $size = $request->request->get("size");
-      if (isset($size)) {
-         $typesize = gettype($size);
-         if ($typesize == "string") {
-            $this->patient->setSize((double)$size);
-         } else {
-            return View::create("size must be double", JsonResponse::HTTP_BAD_REQUEST, []);
-         }
-      } else {
-         return View::create("Missing size filed", JsonResponse::HTTP_BAD_REQUEST, []);
-      }
-   }
-
-   private function checkPathology(Request $request)
-   {
-      $pathology = $request->request->get("pathology");
-      if (isset($pathology)) {
-         $typepathology = gettype($pathology);
-         if ($typepathology == "string") {
-            $this->patient->setPathology($pathology);
-         } else {
-            return View::create("pathology must be string", JsonResponse::HTTP_BAD_REQUEST, []);
-         }
-      } else {
-         return View::create("Missing pathology filed", JsonResponse::HTTP_BAD_REQUEST, []);
-      }
-   }
-
-   private function checkRegistrationNumber(Request $request)
-   {
-      $matricule = $request->request->get("registration_number");
-      $typematricule = gettype($matricule);
-      if (isset($matricule)) {
-         if ($typematricule == "string") {
-            $this->doctor->setRegistrationNumber($matricule);
-         } else {
-            return View::create("registration_number should be string!", JsonResponse::HTTP_BAD_REQUEST, []);
-         }
-      } else {
-         return View::create("missing registration_number  of doctor !!", JsonResponse::HTTP_BAD_REQUEST, []);
-      }
-   }
-
-
-   private function checkSpeciality(Request $request)
-   {
-      $speciality = $request->request->get("speciality");
-      if (isset($speciality)) {
-         $typespeciality = gettype($speciality);
-         if ($typespeciality == "integer") {
-            $repository = $this->getDoctrine()->getRepository(Speciality::class);
-            $speciality = $repository->findAll(array("id" => $speciality, "remove" => false));
-           
-            if (!empty($speciality)) {
-               $this->doctor->setSpeciality($speciality[0]);
-            } else {
-               return View::create("speciality not found", JsonResponse::HTTP_NOT_FOUND, []);
-            }
-         } else {
-            return View::create("speciality must be type of Speciality", JsonResponse::HTTP_BAD_REQUEST, []);
-         }
-      }
-      else{
-         return View::create("missing speciality", JsonResponse::HTTP_BAD_REQUEST, []);
-      }
-   }
 
    private function checkWebSite(Request $request)
    {
@@ -323,10 +241,10 @@ class RestApiUserController extends AbstractFOSRestController
             if (!is_null($checkBirthResult)) {
                return $checkBirthResult;
             }
-            $checkCountry= $this->checkCountry($request);
-            if (!is_null($checkCountry)) {
-               return $checkCountry;
-            }
+            // $checkCountry= $this->checkCountry($request);
+            // if (!is_null($checkCountry)) {
+            //    return $checkCountry;
+            // }
             $checkCityResult = $this->checkCity($request);
             if (!is_null($checkCityResult)) {
                return $checkCityResult;
@@ -355,64 +273,51 @@ class RestApiUserController extends AbstractFOSRestController
             } else {
                return View::create("missing acount password", JsonResponse::HTTP_BAD_REQUEST, []);
             }
-
+         
             $qrcode = md5(uniqid());
             $this->user->setQRCode($qrcode);
-            $this->user->setEnabled(true);
-            $this->user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
-            $this->user->setCreatedAt(new \DateTime());
-            $checkGenderResult = $this->checkGender($request);
-            if (!is_null($checkGenderResult)) {
-               return $checkGenderResult;
-            }
-            $checkBirthResult = $this->checkBirth($request);
-            if (!is_null($checkBirthResult)) {
-               return $checkBirthResult;
-            }
-            $checkCountry= $this->checkCountry($request);
-            if (!is_null($checkCountry)) {
-               return $checkCountry;
-            }
-            $checkCityResult = $this->checkCity($request);
-            if (!is_null($checkCityResult)) {
-               return $checkCityResult;
-            }
-          
-            $checkAdressResult = $this->checkAddress($request);
-            if (!is_null($checkAdressResult)) {
-               return $checkAdressResult;
-            }
-
-            $checkPhoneResult = $this->checkPhone($request);
-            if (!is_null($checkPhoneResult)) {
-               return $checkPhoneResult;
-            }
-            $checkUsernameResult = $this->checkUsername($request);
-            if (!is_null($checkUsernameResult)) {
-               return $checkUsernameResult;
-            }
-            $checkEmailResult = $this->checkEmail($request);
-            if (!is_null($checkEmailResult)) {
-               return $checkEmailResult;
-            }
-            $password = $request->request->get("password");
-            if (isset($password)) {
-               $hash = $encoder->encodePassword($this->user, $password);
-               $this->user->setPassword($hash);
-            } else {
-               return View::create("missing acount password", JsonResponse::HTTP_BAD_REQUEST, []);
-            }
             $this->user->setEnabled(true);
             $this->user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
             $this->user->setCreatedAt(new \DateTime());
             $this->user->setRemove(false);
             $entity->persist($this->user);
             $entity->flush();
-         $response = array(
-            "message" => "account created with success",
-            "result" => $this->user,
-         );
-         return View::create($this->user, Response::HTTP_CREATED);
+            $response = array(
+               "message" => "account created with success",
+               "result" => $this->user,
+            );
+            if ($this->user->getUserType() == 'userIT'){
+               $informaticien = new Informaticien();
+               $informaticien->setCreatedBy($this->user);
+               $informaticien->setCreatedAt(new \DateTime()); 
+               $informaticien->setRecieveNotification(true);
+               $em = $this->getDoctrine()->getManager();           
+               $em->persist($informaticien);
+               $em->flush();
+               return View::create($this->user, Response::HTTP_CREATED);
+            }
+           else if ($this->user->getUserType()  == 'companyManager'){
+               $societe = new Societe();
+               $societe->setCreatedBy($this->user);
+               $societe->setCreatedAt(new \DateTime()); 
+               $em = $this->getDoctrine()->getManager();           
+               $em->persist($societe);
+               $em->flush();
+               return View::create($this->user, Response::HTTP_CREATED);
+            }
+           else {
+               $centre = new CenterFormation();
+               $centre->setCreatedBy($this->user);
+               $centre->setCreatedAt(new \DateTime()); 
+               $em = $this->getDoctrine()->getManager();           
+               $em->persist($centre);
+               $em->flush();
+               return View::create($this->user, Response::HTTP_CREATED);
+            }
+          
+          
+          
+          
       } catch (\Exception $ex) {
        
          return View::create("cannot create this account", JsonResponse::HTTP_BAD_REQUEST);
@@ -472,4 +377,5 @@ class RestApiUserController extends AbstractFOSRestController
       );
       return View::create($response, JsonResponse::HTTP_CREATED, []);
    }
+  
 }

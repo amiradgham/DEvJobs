@@ -19,6 +19,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class RestConfim extends FOSRestController
 {
+    
 
     /**
      * Reset user password
@@ -46,13 +47,13 @@ class RestConfim extends FOSRestController
             $token = $user->getConfirmationToken();
             $name = $user->getUsername();
             try {
-                $transport = (new \Swift_SmtpTransport('mail.continuousnet.com', 587, 'tls'))
-                ->setUsername('amira.dgham@continuousnet.com')
-                ->setPassword('aSspjguK')
+                $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
+                ->setUsername('onesdgham50@gmail.com')
+                ->setPassword('onsdgham1234hama')
                 ->setStreamOptions(array('ssl' => array('allow_self_signed' => true, 'verify_peer' => false, 'verify_peer_name' => false)));
                 $mailer = new \Swift_Mailer($transport);
-                $message = (new \Swift_Message('CoagCare message'))
-                    ->setFrom('amira.dgham@continuousnet.com')
+                $message = (new \Swift_Message('DevJobs message'))
+                    ->setFrom('onesdgham50@gmail.com')
                     ->setTo($email)
                     ->setBody(
                         '<html>' .
@@ -118,15 +119,15 @@ class RestConfim extends FOSRestController
                                       </tr>
                                       <tr>
                                           <td style="font-size:13px;padding:0px 10px 0px 10px;text-align:left">
-                                            <p>If you need additional assistance, or you did not make this change, please contact <a href="mailto:amira.dgham@continuousnet.com" style="color:#56c596;;text-decoration:underline;font-weight:bold" target="_blank">amira.dgham@continuousnet.com</a>.</p>
-                                            <p>Cheers,<br>The coagcare Team</p>
+                                            <p>If you need additional assistance, or you did not make this change, please contact <a href="mailto:onesdgham50@gmail.com" style="color:#56c596;;text-decoration:underline;font-weight:bold" target="_blank">onesdgham50@gmail.com</a>.</p>
+                                            <p>Cheers,<br>DevJobs Team</p>
                                         </td>
                                     </tr>
                               </tbody></table>
                             </td>
                           </tr>
                         </tbody></table>
-                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse;margin:0 auto">   <tbody>     <tr>       <td bgcolor="#ffffff" style="line-height:150%;padding-top:10px;padding-left:10px;padding-right:18px;padding-bottom:30px;text-align:left;border-bottom:0;font-size:10px;border-top:0">         <table width="100%" cellpadding="0" cellspacing="0" border="0" align="left" style="border-collapse:collapse">           <tbody>             <tr>               <td valign="top" style="text-align:center;font-size:11px;color:#282828;padding:20px 0;padding-left:0px">This email was sent to <a style="color:#56c596;text-decoration:none;font-weight:600">' . $email . '</a>, which is associated with a CoagCare App account.  <br> <br>   © 2020 CoagCare App., All Rights Reserved                 <br> ContinuousNet., Residence ElAhmed 2nd Street Yesser Arafet, sahloul 4054                 <br>                 &nbsp;               </td>             </tr>           </tbody>         </table>       </td>     </tr>   </tbody> </table>
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse;margin:0 auto">   <tbody>     <tr>       <td bgcolor="#ffffff" style="line-height:150%;padding-top:10px;padding-left:10px;padding-right:18px;padding-bottom:30px;text-align:left;border-bottom:0;font-size:10px;border-top:0">         <table width="100%" cellpadding="0" cellspacing="0" border="0" align="left" style="border-collapse:collapse">           <tbody>             <tr>               <td valign="top" style="text-align:center;font-size:11px;color:#282828;padding:20px 0;padding-left:0px">This email was sent to <a style="color:#56c596;text-decoration:none;font-weight:600">' . $email . '</a>, which is associated with a DevJobs App account.  <br> <br>   © 2021 DevJobs App., All Rights Reserved                 <br> ones.Dgham., 2020/2021, sousse 4054                 <br>                 &nbsp;               </td>             </tr>           </tbody>         </table>       </td>     </tr>   </tbody> </table>
 
                         <div style="display:none;white-space:nowrap;font:15px courier;color:#ffffff">
                           - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

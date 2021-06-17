@@ -1,0 +1,8 @@
+sep=;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+post_name,post_title,post_status,post_content,post_excerpt,post_author,post_parent,post_date,comment_status,ping_status,post_image,ait-items,ait-locations,featuredItem,headerImage,address,latitude,longitude,streetview,telephone,telephoneAdditional@number,email,showEmail,contactOwnerBtn,web,webLinkLabel,displayOpeningHours,openingHoursMonday,openingHoursTuesday,openingHoursWednesday,openingHoursThursday,openingHoursFriday,openingHoursSaturday,openingHoursSunday,openingHoursNote,displaySocialIcons,socialIconsOpenInNewWindow,socialIcons@image,socialIcons@icon,socialIcons@iconColor,socialIcons@link,displayGallery,gallery@title,gallery@image,displayFeatures,features@icon,features@text,features@desc
+dr-karim-dammak-2,Dr Karim DAMMAK,publish,"<h2 class=""y4vuei-3 cBtaUV"">Herzlich willkommen</h2>
+<a class=""link-extern"" href=""http://medical-inn.de/"" target=""_blank"" rel=""nofollow noopener noreferrer"">www.medical-inn.de</a>
+
+&nbsp;
+
+[osm_map_v3 map_center= ""36.6269,10.6389"" zoom=""12"" width=""95%"" height=""450"" map_border=""thin solid red"" post_markers=""1"" control="""" bckgrndimg="""" ]",,1,0,2020-09-14 15:11:40,open,closed,bild1497614114174,,,1,,,1,1,0,,,,1,0,,,1,08:00 -12:00,08:00 -12:00,08:00 -12:00,08:00 -12:00,08:00 -12:00,,,,1,1,,,,,1,,,1,,,

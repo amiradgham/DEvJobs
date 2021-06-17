@@ -26,7 +26,7 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Serializer\Groups({"users","admin","doctors","patients"})
+     * @Serializer\Groups({"users","admin"})
      */
     protected $id;
 
@@ -34,7 +34,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * @Expose
-     * @Serializer\Groups({"users","doctors","admin","hospitals","patients"})
+     * @Serializer\Groups({"users","admin"})
      */
     private $gender;
 
@@ -55,7 +55,7 @@ class User extends BaseUser
     /**
      * @Expose
      * @ORM\Column(type="date", nullable=true)
-     * @Serializer\Groups({"users","doctors","admin","hospitals"})
+     * @Serializer\Groups({"users","admin"})
      */
     private $birth_date;
 
@@ -74,14 +74,14 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Expose
-     * @Serializer\Groups({"users","doctors"})
+     * @Serializer\Groups({"users"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      * @Expose
-     * @Serializer\Groups({"users","doctors","hospitals"})
+     * @Serializer\Groups({"users"})
      */
     private $phone;
 
@@ -98,7 +98,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Expose
-     * @Serializer\Groups({"users","doctors","admin","hospitals","patients"})
+     * @Serializer\Groups({"users","admin"})
      */
     private $picture;
 
@@ -141,13 +141,13 @@ class User extends BaseUser
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country")
-     * @Serializer\Groups({"users","doctors","hospitals"})
+     * @Serializer\Groups({"users"})
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Serializer\Groups({"users","doctors","admin","patients"})
+     * @Serializer\Groups({"users","admin"})
      */
     private $QR_code;
 
