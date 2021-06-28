@@ -35,7 +35,7 @@ class RestApiCountryController extends FOSRestController
                 return View::create('no country found', JsonResponse::HTTP_OK);
             }
     }
-
+ 
   /**
      * @Rest\Get("/getCountry/{id}", name ="search_country")
      * @Rest\View(serializerGroups={"users"})
@@ -108,7 +108,6 @@ class RestApiCountryController extends FOSRestController
                  * @var UploadedFile $image
                  */
                 $image = $uploadedImage;
-
                 $imageName = md5(uniqid()) . '.' . $image->guessExtension();
                 $type = $image->getType();
                 $size = $image->getSize();
@@ -134,11 +133,9 @@ class RestApiCountryController extends FOSRestController
             $response = array(
                 'message' => 'country created',
                 'result' => $country,
-
             );
             return View::create($response, JsonResponse::HTTP_CREATED, []);
         } else {
-
             return View::create('Not Authorized', JsonResponse::HTTP_FORBIDDEN, []);
         }
     }

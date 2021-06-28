@@ -41,6 +41,7 @@ class RestApiProfileController extends FOSRestController
             "user_type" => $user->getUserType(),
         ]);
     }
+  
     /**
      * @Rest\Get("/api/profile", name ="api_profile")
      * @Rest\View(serializerGroups={"users","admin"})
