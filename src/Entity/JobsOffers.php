@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobsOffersRepository")
- */
+ **/
 class JobsOffers
 {
     /**
@@ -126,6 +126,16 @@ class JobsOffers
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $deleted_at;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $remove;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
 
     public function getId(): ?int
     {
@@ -392,6 +402,30 @@ class JobsOffers
     public function setDeletedAt(?\DateTimeInterface $deleted_at): self
     {
         $this->deleted_at = $deleted_at;
+
+        return $this;
+    }
+
+    public function getRemove(): ?bool
+    {
+        return $this->remove;
+    }
+
+    public function setRemove(?bool $remove): self
+    {
+        $this->remove = $remove;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
