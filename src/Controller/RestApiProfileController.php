@@ -56,29 +56,22 @@ class RestApiProfileController extends FOSRestController
         if ($user->getUserType() === UserType::TYPE_ADMIN) {
             $repository = $this->getDoctrine()->getRepository(User::class);
             $admin = $repository->findBy(array('id' => $data));
-
             return View::create($admin, JsonResponse::HTTP_OK);
         }
         if ($user->getUserType() === UserType::TYPE_IT) {
             $repository = $this->getDoctrine()->getRepository(Informaticien::class);
             $informaticien = $repository->findBy(array('created_by' => $data));
-
             return View::create($informaticien, JsonResponse::HTTP_OK);
-
         }
         if ($user->getUserType() === UserType::TYPE_TRAINIG) {
             $repository = $this->getDoctrine()->getRepository(CenterFormation::class);
-            $centre = $repository->findBy(array('id' => $data));
-
+            $centre = $repository->findBy(array('created_by' => $data));
             return View::create($centre, JsonResponse::HTTP_OK);
-
         }
         if ($user->getUserType() === UserType::TYPE_COMPANY) {
             $repository = $this->getDoctrine()->getRepository(Societe::class);
-            $societe = $repository->findBy(array('id' => $data));
-
+            $societe = $repository->findBy(array('createdBy' => $data));
             return View::create($societe, JsonResponse::HTTP_OK);
-
         }
     }
     /**
@@ -156,8 +149,6 @@ class RestApiProfileController extends FOSRestController
             if (!is_null($informaticien)) {
                 $bio = $request->request->get('bio');
                 if (isset($bio)) {
-                    
-
                     $informaticien->setBio($bio);
                 }
                 $contrat = $request->request->get("contract_type");
@@ -194,81 +185,53 @@ class RestApiProfileController extends FOSRestController
                 $em->flush();
                 return View::create($informaticien, JsonResponse::HTTP_OK, []);
             }
-        }
-                
-          
-                
-            
-
-               
+        }   
         
-        if ($user->getUserType() === UserType::TYPE_PATIENT) {
-            $repository = $this->getDoctrine()->getRepository(Patient::class);
-            $patient = $repository->findOneBy(array('created_by' => $user->getId()));
-            if (!is_null($patient)) {
-                $weight = $request->request->get('weight');
-                if (isset($weight)) {
-                    $patient->setWeight((double)$weight);
+        if ($user->getUserType() === UserType::TYPE_COMPANY) {
+            $repository = $this->getDoctrine()->getRepository(Societe::class);
+            $societe = $repository->findOneBy(array('createdBy' => $user->getId()));
+            if (!is_null($societe)) {
+                $bio = $request->request->get('bio');
+                if (isset($bio)) {
+                    $societe->setBio($bio);
                 }
-                $size = $request->request->get('size');
-                if (isset($size)) {
-                    $patient->setSize((double)$size);
+                $website = $request->request->get('website');
+                if (isset($website)) {
+                    $societe->setWebsite($website);
                 }
-                $proffesion = $request->request->get('proffesion');
-                if (isset($proffesion)) {
-                    $patient->setProffesion($proffesion);
+                $nb_emp = $request->request->get('nb_emp');
+                if (isset($nb_emp)) {
+                    $societe->setNbEmp($nb_emp);
                 }
-                $pathology = $request->request->get('pathology');
-                if (isset($pathology)) {
-                    $patient->setWeight($pathology);
+                $secteur = $request->request->get('secteur');
+                if (isset($secteur)) {
+                    $societe->setSecteur($secteur);
                 }
-                $patient->setUpdatedBy($user);
-                $patient->setUpdatedAt(new \DateTime());
+              
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
-                return View::create($patient, JsonResponse::HTTP_OK, []);
+                return View::create($societe, JsonResponse::HTTP_OK, []);
             }
         }
-        if ($user->getUserType() === UserType::TYPE_DOCTOR) {
-            $repository = $this->getDoctrine()->getRepository(Doctor::class);
-            $doctor = $repository->findOneBy(array('created_by' => $user->getId()));
-            if (!is_null($doctor)) {
-                $speciality = $request->request->get('speciality');
-                if (isset($speciality)) {
-                    $repository = $this->getDoctrine()->getRepository(Speciality::class);
-                    $specialityy = $repository->findOneBy(array('id' => $speciality, 'removed' => false));
-                    if (!is_null($specialityy)) {
-                        $doctor->setSpeciality($specialityy);
-                    } else {
-                        return View::create('speciality not found and must be type of Speciality' , JsonResponse::HTTP_BAD_REQUEST, []);
-                    }
+        if ($this->user->getUserType()  == 'trainingManager'){
+            $repository = $this->getDoctrine()->getRepository(CenterFormation::class);
+            $center = $repository->findOneBy(array('created_by' => $user->getId()));
+            if (!is_null($center)) {
+                $secteur = $request->request->get('secteur');
+                if (isset($secteur)) {
+                    $center->setSecteur($secteur);
                 }
-                $number = $request->request->get('registration_number');
-                if (isset($number)) {
-                    if( gettype($number) == "string"){
-                        $doctor->setRegistrationNumber($number);
-                    }
-                    else{
-                        return View::create('registration_number must be unique and type string' , JsonResponse::HTTP_BAD_REQUEST, []);
-                    }
+                $bio = $request->request->get('bio');
+                if (isset($bio)) {
+                    $center->setBio($bio);
                 }
-                $hospital = $request->request->get('hospital_id');
-                $hosp = 'hospital';
-                if (isset($hospital)) {
-                    $repository = $this->getDoctrine()->getRepository(Hospital::class);
-                    $hospialid = $repository->findOneBy(array('id' => $hospital, 'removed' => false));
-                    if (!is_null($hospialid)) {
-                        $doctor->setHospital($hospialid);
-                    } else {
-                        return View::create('hospital not found', JsonResponse::HTTP_BAD_REQUEST, []);
-                    }
+                $experience = $request->request->get('experience');
+                if (isset($experience)) {
+                    $center->setExprience($experience);
                 }
-                
-                $doctor->setUpdatedBy($user);
-                $doctor->setUpdatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
-                return View::create($doctor, JsonResponse::HTTP_OK, []);
+                return View::create($center, JsonResponse::HTTP_OK, []);
             }
         }
     }

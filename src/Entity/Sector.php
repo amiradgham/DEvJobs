@@ -52,6 +52,11 @@ class Sector
      */
     private $deletedBy;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $remove;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Sector
     public function setDeletedBy(?User $deletedBy): self
     {
         $this->deletedBy = $deletedBy;
+
+        return $this;
+    }
+
+    public function getRemove(): ?bool
+    {
+        return $this->remove;
+    }
+
+    public function setRemove(bool $remove): self
+    {
+        $this->remove = $remove;
 
         return $this;
     }

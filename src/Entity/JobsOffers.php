@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use JMS\Serializer\Annotation as Serializer;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobsOffersRepository")
  **/
@@ -13,41 +13,49 @@ class JobsOffers
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"users"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"users"})
      */
     private $name_offer;
 
     /**
      * @ORM\Column(type="string", length=550)
+     * @Serializer\Groups({"users"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"users"})
      */
     private $post_vacont;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"users"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"users"})
      */
     private $experience;
 
     /**
      * @ORM\Column(type="date")
+     * @Serializer\Groups({"users"}) 
      */
     private $experiation_date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Groups({"users"})
      */
     private $language;
 
@@ -58,47 +66,56 @@ class JobsOffers
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Groups({"users"})
      */
     private $salary;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"users"})
      */
     private $contract_type;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country")
+     * @Serializer\Groups({"users"})
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"users"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Groups({"users"})
      */
     private $niveau_etude;
 
     /**
      * @ORM\Column(type="text")
+     * @Serializer\Groups({"users"})
      */
     private $mission;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Groups({"users"})
      */
     private $formation_type;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Groups({"users"})
      */
     private $competence;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"users"})
      */
     private $created_by;
 
@@ -134,6 +151,7 @@ class JobsOffers
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Groups({"users"})
      */
     private $picture;
 

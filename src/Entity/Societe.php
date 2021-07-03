@@ -31,7 +31,7 @@ class Societe
     private $bio;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Expose
      * @Serializer\Groups({"users","admin"})
      */
@@ -45,7 +45,7 @@ class Societe
     private $nb_emp;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Expose
      * @Serializer\Groups({"users","admin"})
      */
@@ -68,7 +68,9 @@ class Societe
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Groups({"users","admin"})
      */
+    
     private $createdBy;
 
     /**

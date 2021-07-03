@@ -282,42 +282,32 @@ class RestApiUserController extends AbstractFOSRestController
             $this->user->setRemove(false);
             $entity->persist($this->user);
             $entity->flush();
-            $response = array(
-               "message" => "account created with success",
-               "result" => $this->user,
-            );
             if ($this->user->getUserType() == 'userIT'){
                $informaticien = new Informaticien();
                $informaticien->setCreatedBy($this->user);
                $informaticien->setCreatedAt(new \DateTime()); 
                $informaticien->setRecieveNotification(true);
-               $em = $this->getDoctrine()->getManager();           
-               $em->persist($informaticien);
-               $em->flush();
+               $entity->persist($informaticien);
+               $entity->flush();
                return View::create($this->user, Response::HTTP_CREATED);
             }
-           else if ($this->user->getUserType()  == 'companyManager'){
+            if ($this->user->getUserType()  == 'companyManager'){
                $societe = new Societe();
                $societe->setCreatedBy($this->user);
                $societe->setCreatedAt(new \DateTime()); 
-               $em = $this->getDoctrine()->getManager();           
-               $em->persist($societe);
-               $em->flush();
-               return View::create($this->user, Response::HTTP_CREATED);
+               $entity->persist($societe);
+               $entity->flush();
+               return View::create($societe, Response::HTTP_CREATED);
             }
-           else {
+            if ($this->user->getUserType()  == 'trainingManager'){
                $centre = new CenterFormation();
                $centre->setCreatedBy($this->user);
                $centre->setCreatedAt(new \DateTime()); 
-               $em = $this->getDoctrine()->getManager();           
-               $em->persist($centre);
-               $em->flush();
+               $entity = $this->getDoctrine()->getManager();           
+               $entity->persist($centre);
+               $entity->flush();
                return View::create($this->user, Response::HTTP_CREATED);
             }
-          
-          
-          
-          
       } catch (\Exception $ex) {
        
          return View::create("cannot create this account", JsonResponse::HTTP_BAD_REQUEST);
