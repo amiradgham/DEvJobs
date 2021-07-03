@@ -287,9 +287,6 @@ class RestApiOfferJobController extends FOSRestController
             if (isset($NiveauEtude)) {
              $offer->setNiveauEtude($NiveauEtude);
             }
-            $offer->setCreatedBy($user);
-            $offer->setCreatedAt(new \DateTime());
-            $offer->setRemove(false);
             $entity->persist($offer);
             $entity->flush();
             $response = array(
