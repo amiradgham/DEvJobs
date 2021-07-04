@@ -4,7 +4,12 @@ namespace App\Entity;
 
 use App\Repository\TrainingOfferRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Webmozart\Assert\Assert;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\Expose;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity(repositoryClass=TrainingOfferRepository::class)
  */
@@ -14,51 +19,71 @@ class TrainingOffer
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $traningName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $trainingDescription;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $trainingModality;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $trainingObjectif;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $hourlyVolume;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $traningCost;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $trainingDuration;
 
@@ -66,6 +91,8 @@ class TrainingOffer
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $createdBy;
 
@@ -81,6 +108,8 @@ class TrainingOffer
 
     /**
      * @ORM\Column(type="datetime")
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $createdAt;
 
@@ -96,6 +125,8 @@ class TrainingOffer
 
     /**
      * @ORM\ManyToOne(targetEntity=Sector::class)
+     * @Expose
+     * @Serializer\Groups({"users","admin"})
      */
     private $sector;
 

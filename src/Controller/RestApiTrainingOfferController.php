@@ -31,7 +31,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class RestApiTrainingOfferController extends FOSRestController
 {
     /**
-     * @Rest\Get("/trainings", name ="api_training")
+     * @Rest\Get("/api/trainings", name ="api_training")
      * @Rest\View(serializerGroups={"users"})
      */
     public function getTraining()
@@ -44,9 +44,22 @@ class RestApiTrainingOfferController extends FOSRestController
                 return View::create('no training found', JsonResponse::HTTP_OK);
             }
     }
-
+/**
+     * @Rest\Get("/api/entreprise", name ="api_entreprise")
+     * @Rest\View(serializerGroups={"users"})
+     */
+    public function getEntreprise()
+    {
+            $repository =  $this->getDoctrine()->getRepository(Societe::class);
+            $trailling = $repository->findAll();
+            if (!empty($trailling)) {
+                return View::create($trailling, JsonResponse::HTTP_OK, []);
+            } else {
+                return View::create('no entreprise found', JsonResponse::HTTP_OK);
+            }
+    }
      /**
-     * @Rest\Get("/trainings/{id}", name ="search_training")
+     * @Rest\Get("/api/trainings/{id}", name ="search_training")
      * @Rest\View(serializerGroups={"users"})
      */
     public function Trainingbyid($id)
@@ -60,13 +73,13 @@ class RestApiTrainingOfferController extends FOSRestController
             }
          }
     /**
-     * @Rest\Post("/trainings", name ="post_training")
+     * @Rest\Post("/api/trainings", name ="post_training")
      * @Rest\View(serializerGroups={"users"})
      */
     public function createTraining(Request $request, EntityManagerInterface $entity)
     {
         $user = $this->getUser();
-            $TraningName = $request->request->get('TraningName');
+            $TraningName = $request->request->get('traning_name');
             $typeTraningName = gettype($TraningName);
             $training = new TrainingOffer();
             if (isset($TraningName)) {
@@ -78,7 +91,7 @@ class RestApiTrainingOfferController extends FOSRestController
             } else {
                 return View::create('missing name of TraningName !!', JsonResponse::HTTP_BAD_REQUEST);
             }
-            $TrainingDescription = $request->request->get('TrainingDescription');
+            $TrainingDescription = $request->request->get('training_description');
             $typeTrainingDescription = gettype($TrainingDescription);
             if (isset($TrainingDescription)) {
                 if ($typeTrainingDescription == "string") {
@@ -86,81 +99,142 @@ class RestApiTrainingOfferController extends FOSRestController
                 } else {
                     return View::create('TrainingDescription must be a string', JsonResponse::HTTP_BAD_REQUEST);
                 }
+
             } else {
-                return View::create('you should add the Description to the country', JsonResponse::HTTP_BAD_REQUEST);
+                return View::create('you should add the Description', JsonResponse::HTTP_BAD_REQUEST);
             }
-            $TrainingModality = $request->request->get('TrainingModality');
+            $TrainingModality = $request->request->get('training_modality');
             if (isset($TrainingModality)) {
              $training->setTrainingModality($TrainingModality);  
             }
-            $TrainingObjectif = $request->request->get('TrainingObjectif');
+            $TrainingObjectif = $request->request->get('training_objectif');
             if (isset($TrainingObjectif)) {
              $training->setTrainingObjectif($TrainingObjectif);
             }
-            $HourlyVolume = $request->request->get('HourlyVolume');
+            $HourlyVolume = $request->request->get('hourly_volume');
             if (isset($HourlyVolume)) {
-             $training->setHourlyVolume($HourlyVolume);
+             $training->setHourlyVolume($HourlyVolume+"heures");
             }
-            $TraningCost = $request->request->get('TraningCost');
+            $TraningCost = $request->request->get('traning_cost');
             if (isset($TraningCost)) {
              $training->setTraningCost($TraningCost);
             }
-            $City = $request->request->get('City');
+            $City = $request->request->get('city');
             if (isset($City)) {
              $training->setCity($City);
             }
-            $Address = $request->request->get('Address');
+            else{
+                return View::create('you should add the city', JsonResponse::HTTP_BAD_REQUEST);
+
+            }
+            $Address = $request->request->get('address');
             if (isset($Address)) {
              $training->setAddress($Address);
             }
-            $TrainingDuration = $request->request->get('TrainingDuration');
+            $TrainingDuration = $request->request->get('training_duration');
             if (isset($TrainingDuration)) {
-             $offer->setTrainingDuration($TrainingDuration);
+             $training->setTrainingDuration($TrainingDuration);
             }
-          
-            $uploadedImage = $request->files->get('picture');
-            if (!is_null($uploadedImage)) {
-                /**
-                 * @var UploadedFile $image
-                 */
-                $image = $uploadedImage;
-                $imageName = md5(uniqid()) . '.' . $image->guessExtension();
-                $type = $image->getType();
-                $size = $image->getSize();
-                $imagetype = $image->guessExtension();
-                $path = $this->getParameter('image_directory');
-                $serveur_ip = gethostbyname(gethostname());
-                $path_uplaod = 'offers/';
-                if ($imagetype == "jpeg" || $imagetype == "png" || $imagetype == "svg") {
-                    $image->move($path_uplaod, $imageName);
-                    $image_url = $path_uplaod . $imageName;
-                    $offer->setPicture($image_url);
-                } else {
-                    return View::create('there is something wrong with this file!,select picture!', JsonResponse::HTTP_BAD_REQUEST, []);
-                }
-            }
-            $offer->setCreatedBy($user);
-            $offer->setCreatedAt(new \DateTime());
-            $offer->setRemove(false);
-            $entity->persist($offer);
+            $training->setCreatedBy($user);
+            $training->setCreatedAt(new \DateTime());
+            $training->setRemove(false);
+            $entity->persist($training);
             $entity->flush();
             $response = array(
                 'message' => 'offer created',
-                'result' => $offer,
+                'result' => $training
             );
             return View::create($response, JsonResponse::HTTP_CREATED, []);
     }
+   /**
+     * @Rest\Patch("/api/trainings/{id}", name ="patch_tarining")
+     * @Rest\View(serializerGroups={"users"})
+     */
+    public function updateJobss(Request $request, EntityManagerInterface $entity, $id)
+    {
+        $user = $this->getUser();
+        $repository = $this->getDoctrine()->getRepository(TrainingOffer::class);
+        $training = $repository->findOneBy(array('id' => $id, 'createdBy' => $user->getId(), 'remove' => false));
+        if (!is_null($training)) {
+            $TraningName = $request->request->get('traning_name');
+            $typeTraningName = gettype($TraningName);
+            if (isset($TraningName)) {
+                if ($typeTraningName == "string") {
+                    $training->setTraningName($typeTraningName);
+                } else {
+                    return View::create('TraningName must be a string', JsonResponse::HTTP_BAD_REQUEST);
+                }
+            } else {
+                return View::create('missing name of TraningName !!', JsonResponse::HTTP_BAD_REQUEST);
+            }
+            $TrainingDescription = $request->request->get('training_description');
+            $typeTrainingDescription = gettype($TrainingDescription);
+            if (isset($TrainingDescription)) {
+                if ($typeTrainingDescription == "string") {
+                    $training->setTrainingDescription($TrainingDescription);
+                } else {
+                    return View::create('TrainingDescription must be a string', JsonResponse::HTTP_BAD_REQUEST);
+                }
+
+            } else {
+                return View::create('you should add the Description', JsonResponse::HTTP_BAD_REQUEST);
+            }
+            $TrainingModality = $request->request->get('training_modality');
+            if (isset($TrainingModality)) {
+             $training->setTrainingModality($TrainingModality);  
+            }
+            $TrainingObjectif = $request->request->get('training_objectif');
+            if (isset($TrainingObjectif)) {
+             $training->setTrainingObjectif($TrainingObjectif);
+            }
+            $HourlyVolume = $request->request->get('hourly_volume');
+            if (isset($HourlyVolume)) {
+             $training->setHourlyVolume($HourlyVolume);
+            }
+            $TraningCost = $request->request->get('traning_cost');
+            if (isset($TraningCost)) {
+             $training->setTraningCost($TraningCost);
+            }
+            $City = $request->request->get('city');
+            if (isset($City)) {
+             $training->setCity($City);
+            }
+            else{
+                return View::create('you should add the city', JsonResponse::HTTP_BAD_REQUEST);
+
+            }
+            $Address = $request->request->get('address');
+            if (isset($Address)) {
+             $training->setAddress($Address);
+            }
+            $TrainingDuration = $request->request->get('training_duration');
+            if (isset($TrainingDuration)) {
+             $training->setTrainingDuration($TrainingDuration);
+            }
+            $entity->persist($training);
+            $entity->flush();
+            $response = array(
+                'message' => 'training updated',
+                'result' => $training,
+            );
+            return View::create($response, JsonResponse::HTTP_CREATED, []);
+            //end of if
+    }else{
+        return View::create('this offer not exist', JsonResponse::HTTP_BAD_REQUEST);
+    }
+}
+    
 
      /**
      * @param Request $request
      * @return JsonResponse
-     * @Rest\Post("/trainings/picture/{id}", name ="uploqd_trainingImg")
+     * @Rest\Post("/api/trainings/picture/{id}", name ="uploqd_trainingImg")
      * @Rest\View(serializerGroups={"users"})
      */
     public function uploadTrainingImage($id, Request $request)
     {
         $user = $this->getUser();
-        $repository =  $this->getDoctrine()->getRepository(JobsOffers::class);
+        $repository =  $this->getDoctrine()->getRepository(TrainingOffer::class);
         $offer = $repository->findOneBy(array('id' => $id, 'created_by' => $user->getId(), 'remove' => false));
             if (!is_null($offer)) {
                 $uploadedImage = $request->files->get('picture');
@@ -200,26 +274,20 @@ class RestApiTrainingOfferController extends FOSRestController
             }
     }
      /**
-     * @Rest\Delete("/trainings/{id}", name ="delete_training")
+     * @Rest\Delete("/api/trainings/{id}", name ="delete_training")
      */
     public function deleteTraining($id)
     {
         $user = $this->getUser();
-        if ($user->getUserType() === UserType::TYPE_ADMIN) {
-            $repository = $this->getDoctrine()->getRepository(Country::class);
-            $jobs = $repository->findOneBy(array('id' => $id, 'created_by' => $user->getId(), 'remove' => false));
+            $repository = $this->getDoctrine()->getRepository(TrainingOffer::class);
+            $jobs = $repository->findOneBy(array('id' => $id, 'remove' => false));
             if (!is_null($jobs)) {
                 $jobs->setRemove(true);
-                $jobs->setRemovedBy($user);
-                $jobs->setRemovedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
-                return View::create('jobs deleted', JsonResponse::HTTP_OK, []);
+                return View::create('formation deleted', JsonResponse::HTTP_OK, []);
             } else {
-                return View::create('jobs not Found', JsonResponse::HTTP_NOT_FOUND);
+                return View::create('formation not Found', JsonResponse::HTTP_NOT_FOUND);
             }
-        } else {
-            return View::create('Not Authorized', JsonResponse::HTTP_FORBIDDEN, []);
-        }
     }
 }

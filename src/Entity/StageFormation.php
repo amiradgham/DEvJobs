@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=StageFormationRepository::class)
+ * 
  */
 class StageFormation
 {

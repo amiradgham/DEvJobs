@@ -49,7 +49,7 @@ class RestApiOfferJobController extends FOSRestController
         }
         else{
             $repository =  $this->getDoctrine()->getRepository(JobsOffers::class);
-            $offer = $repository->findBy(array('remove' => false,'created_by' => $data ), array('id' => 'DESC'));
+            $offer = $repository->findBy(array('remove' => false), array('id' => 'DESC'));
             if (!empty($offer)) {
                 return View::create($offer, JsonResponse::HTTP_OK, []);
             } else {

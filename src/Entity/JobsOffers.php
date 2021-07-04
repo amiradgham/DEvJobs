@@ -131,6 +131,7 @@ class JobsOffers
 
     /**
      * @ORM\Column(type="datetime")
+   * @Serializer\Groups({"users"})
      */
     private $created_at;
 
