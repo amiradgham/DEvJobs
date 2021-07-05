@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PostulerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass=PostulerRepository::class)
@@ -14,31 +15,37 @@ class Postuler
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *  @Serializer\Groups({"users"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Serializer\Groups({"users"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="datetime")
+     *  @Serializer\Groups({"users"})
      */
     private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
+     *  @Serializer\Groups({"users"})
      */
     private $entreprise;
 
     /**
      * @ORM\ManyToOne(targetEntity=Informaticien::class)
+     *  @Serializer\Groups({"users"})
      */
     private $createdBy;
 
     /**
      * @ORM\ManyToOne(targetEntity=JobsOffers::class)
+     *  @Serializer\Groups({"users"})
      */
     private $offerId;
 

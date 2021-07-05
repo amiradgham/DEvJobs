@@ -25,18 +25,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostullerController extends AbstractController
 { 
       /**
-    * @Rest\Get("/api/postuler", name ="apii_countrys")
+    * @Rest\Get("/api/postuler/{id}", name ="apii_postuler")
     * @Rest\View(serializerGroups={"users"})
     */
-    public function getPostResult(): Response
+    public function getPostResult($id)
     {
         $user = $this->getUser();
         $data = array(
             'id' => $user->getId(),
         );
         if ($user->getUserType() === UserType::TYPE_COMPANY) {
+            
             $repository =  $this->getDoctrine()->getRepository(Postuler::class);
-            $offer = $repository->findBy(array('remove' => false,'societe' => $data ), array('id' => 'DESC'));
+            $offer = $repository->findBy(array('entreprise' => $data,'offerId'=>$id ), array('id' => 'DESC'));
             if (!empty($offer)) {
                 return View::create($offer, JsonResponse::HTTP_OK, []);
             } else {
