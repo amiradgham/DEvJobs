@@ -29,16 +29,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class RestApiOfferJobController extends FOSRestController
 {
    /**
-     * @Rest\Get("/api/jobs", name ="apii_countrys")
+     * @Rest\Get("/jobs", name ="apii_countrys")
      * @Rest\View(serializerGroups={"users"})
      */
     public function getjobs()
     {
         $user = $this->getUser();
-        $data = array(
-            'id' => $user->getId(),
-        );
+      if ( $user != null){
         if ($user->getUserType() === UserType::TYPE_COMPANY) {
+            $data = array(
+                'id' => $user->getId(),
+            );
             $repository =  $this->getDoctrine()->getRepository(JobsOffers::class);
             $offer = $repository->findBy(array('remove' => false,'created_by' => $data ), array('id' => 'DESC'));
             if (!empty($offer)) {
@@ -47,6 +48,7 @@ class RestApiOfferJobController extends FOSRestController
                 return View::create('no jobs found', JsonResponse::HTTP_OK);
             }
         }
+    }
         else{
             $repository =  $this->getDoctrine()->getRepository(JobsOffers::class);
             $offer = $repository->findBy(array('remove' => false), array('id' => 'DESC'));

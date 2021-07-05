@@ -25,16 +25,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class StageFormationController extends FOSRestController
 {
     /**
-     * @Rest\Get("/api/stage", name ="api_stage")
+     * @Rest\Get("/stage", name ="api_stage")
      * @Rest\View(serializerGroups={"users"})
      */
     public function getjobs()
     {
         $user = $this->getUser();
-        $data = array(
-            'id' => $user->getId(),
-        );
+      if ($user !=null){
         if ($user->getUserType() === UserType::TYPE_COMPANY) {
+            $data = array(
+                'id' => $user->getId(),
+            );
             $repository =  $this->getDoctrine()->getRepository(StageFormation::class);
             $offer = $repository->findBy(array('remove' => false,'createdBy' => $data ), array('id' => 'DESC'));
             if (!empty($offer)) {
@@ -43,6 +44,7 @@ class StageFormationController extends FOSRestController
                 return View::create('no stage found', JsonResponse::HTTP_OK);
             }
         }
+    }
         else{
             $repository =  $this->getDoctrine()->getRepository(StageFormation::class);
             $offer = $repository->findBy(array('remove' => false ), array('id' => 'DESC'));

@@ -31,7 +31,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class RestApiTrainingOfferController extends FOSRestController
 {
     /**
-     * @Rest\Get("/api/trainings", name ="api_training")
+     * @Rest\Get("/trainings", name ="api_training")
      * @Rest\View(serializerGroups={"users"})
      */
     public function getTraining()
