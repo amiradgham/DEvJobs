@@ -64,7 +64,6 @@ class RestApiAssetController  extends FOSRestController
     public function create(Request $request, EntityManagerInterface $entity)
     {
         $user = $this->getUser();
-        if ($user->getUserType() === UserType::TYPE_ADMIN) {
             $uploadedImage = $request->files->get('file');
 
             if (!is_null($uploadedImage)) {
@@ -184,9 +183,7 @@ class RestApiAssetController  extends FOSRestController
                 } else {
                     return View::create('this type of file is not accepted ,try another !', JsonResponse::HTTP_BAD_REQUEST, []);
                 }
-            } else {
-                return View::create('Not Authorized', JsonResponse::HTTP_FORBIDDEN, []);
-            }
+          
         } else {
             return View::create('Not Authorized', JsonResponse::HTTP_FORBIDDEN, []);
         }

@@ -114,7 +114,7 @@ class RestConfim extends FOSRestController
                                       </tr>
                                       <tr>
                                           <td style="padding-bottom:30px">
-                   <div class="container"> <center><a href=`https://api.coagcare.continuousnet.com/confirm/resetPassword?token=' . $token . ' "  class="button button3" style=`color:#fffff;` ><font color="FFFFF"> Reset Password</font> </a></center></div>
+                   <div class="container"> <center><a href=`http://127.0.0.1:8000/confirm/resetPassword?token=' . $token . ' "  class="button button3" style=`color:#fffff;` ><font color="FFFFF"> Reset Password</font> </a></center></div>
                                         </td>
                                       </tr>
                                       <tr>
